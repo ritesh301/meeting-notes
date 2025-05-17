@@ -1,40 +1,42 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import { createNewNote, updateNote, getNote } from "../controllers/controllers";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { setTitle, setNote, resetCurrent } from "../redux/notesSlice";
+import useToast from "../hooks/useToast";
 import NoteForm from "./NoteForm";
-import useToast from "../hooks/useToast.jsx";
 
 export default function NoteEditor() {
+  const dispatch = useDispatch();
   const { notesId } = useParams();
   const navigate = useNavigate();
   const { showSuccess, showError } = useToast();
-  const [title, setTitle] = useState("");
-  const [note, setNote] = useState("");
-  const [loading, setLoading] = useState(false);
+
+  const title = useSelector(state => state.notes.current.title);
+  const note = useSelector(state => state.notes.current.note);
 
   useEffect(() => {
     if (notesId) {
-      setLoading(true);
       try {
         const noteData = getNote(notesId);
-        setTitle(noteData.title);
-        setNote(noteData.note);
+        dispatch(setTitle(noteData.title));
+        dispatch(setNote(noteData.note));
       } catch (err) {
         showError(err.message);
         navigate("/", { replace: true });
-      } finally {
-        setLoading(false);
       }
+    } else {
+      dispatch(resetCurrent());
     }
-  }, [notesId, navigate, showError]);
+  }, [notesId, dispatch]);
 
   async function handleSubmit() {
-    try {
-      if (title.trim() === "" || note.trim() === "") {
-        showError("Title and note cannot be empty");
-        return;
-      }
+    if (title.trim() === "" || note.trim() === "") {
+      showError("Title and note cannot be empty");
+      return;
+    }
 
+    try {
       if (notesId) {
         await updateNote(notesId, title, note);
         showSuccess(`Note "${title}" Updated`);
@@ -42,8 +44,7 @@ export default function NoteEditor() {
       } else {
         const newNote = await createNewNote(title, note);
         showSuccess(`New Note "${title}" Created`);
-        setTitle("");
-        setNote("");
+        dispatch(resetCurrent());
         navigate(`/notes/${newNote.id}`);
       }
     } catch (err) {
@@ -51,23 +52,15 @@ export default function NoteEditor() {
     }
   }
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-purple-600"></div>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col gap-5">
       <NoteForm
         title={title}
-        setTitle={setTitle}
+        setTitle={(val) => dispatch(setTitle(val))}
         note={note}
-        setNote={setNote}
+        setNote={(val) => dispatch(setNote(val))}
       />
-      <div className="flex justify-end ">
+      <div className="flex justify-end">
         <button
           className="bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition"
           onClick={handleSubmit}
