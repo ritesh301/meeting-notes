@@ -39,7 +39,7 @@ export default function NoteViewer() {
   }
 
   return (
-    <div className="flex flex-col gap-5 w-full">
+    <div className="flex flex-col gap-5 w-full bg-[#e8e7cf] p-15 rounded-3xl">
       <div className="flex flex-col justify-between items-center">
         <NoteForm
           title={title}

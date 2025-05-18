@@ -53,7 +53,7 @@ export default function NoteEditor() {
   }
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 bg-[#e8e7cf] p-15 rounded-3xl">
       <NoteForm
         title={title}
         setTitle={(val) => dispatch(setTitle(val))}
