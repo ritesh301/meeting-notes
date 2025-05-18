@@ -56,13 +56,13 @@ export default function ViewNotes() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5 items-center">
       {notes.map((note) => (
         <div
           key={note.id}
-          className="flex flex-col gap-2 border-2 rounded-lg p-4"
+          className="flex w-150 flex-col gap-5 border-[#d8d6ab] rounded-lg p-8 bg-[#e8e7cf] items-center mt-5"
         >
-          <p className="font-medium">{note.title}</p>
+          <p className="font-bold">Title: {note.title}</p>
           <div className="flex gap-3">
             <NavLink
               to={`/notes/${note.id}`}

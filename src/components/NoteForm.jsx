@@ -19,9 +19,10 @@ export default function NoteForm({
 
   return (
     <div className="flex flex-col gap-5 w-full">
-      <div className="flex justify-between items-center">
+      <div className="flex gap-10 items-center">
+        Title:
         <input
-          className="border p-2 w-[300px] rounded-2xl bg-purple-100 disabled:bg-gray-100"
+          className=" p-2 px-5 w-[300px] rounded-2xl bg-purple-100 disabled:bg-gray-100"
           placeholder="Title"
           value={title || ""}
           onChange={handleTitleChange}
@@ -33,7 +34,7 @@ export default function NoteForm({
       </div>
       <div>
         <textarea
-          className="w-full p-2 border rounded-2xl bg-purple-100 disabled:bg-gray-100"
+          className="w-full border p-2 mt-3 rounded-2xl bg-purple-100 disabled:bg-gray-100"
           placeholder="Enter your notes here"
           value={note || ""}
           onChange={handleNoteChange}
