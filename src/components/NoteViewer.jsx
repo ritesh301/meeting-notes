@@ -49,7 +49,7 @@ export default function NoteViewer() {
           readOnly
         />
         <NavLink
-          className="bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition"
+          className="mt-3 text-white p-2 rounded-lg btn btn-accent hover:btn-primary  transition"
           to="update"
           aria-label="Update note"
         >

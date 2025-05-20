@@ -62,25 +62,25 @@ export default function ViewNotes() {
           key={note.id}
           className="flex w-150 flex-col gap-5 border-[#d8d6ab] rounded-lg p-8 bg-[#e8e7cf] items-center mt-5"
         >
-          <p className="font-bold">Title: {note.title}</p>
+          <p className="font-bold text-black">Title: {note.title}</p>
           <div className="flex gap-3">
             <NavLink
               to={`/notes/${note.id}`}
-              className="bg-purple-600 text-white p-1 px-3 rounded-lg hover:bg-purple-700 transition"
+              className="btn btn-accent hover:btn-primary  text-white p-1 px-3 rounded-lg transition"
               aria-label={`View note ${note.title}`}
             >
               View
             </NavLink>
             <NavLink
               to={`/notes/${note.id}/update`}
-              className="bg-purple-600 text-white p-1 px-3 rounded-lg hover:bg-purple-700 transition"
+              className="btn btn-accent hover:btn-primary  text-white p-1 px-3 rounded-lg  transition"
               aria-label={`Update note ${note.title}`}
             >
               Update
             </NavLink>
             <button
               onClick={() => handleDelete(note.id)}
-              className="bg-red-500 text-white p-1 px-3 rounded-lg hover:bg-red-600 transition"
+              className="btn btn-secondary hover:btn-primary  text-white p-1 px-3 rounded-lg cursor-pointer transition"
               aria-label={`Delete note ${note.title}`}
             >
               Delete

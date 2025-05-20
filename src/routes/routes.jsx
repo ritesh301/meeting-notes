@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div>
+      <div className="bg-[#1d232a]">
         <Header />
         <MainContainer>
           <Home />
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   {
     path: "/notes",
     element: (
-      <div>
+      <div className="bg-[#1d232a]">
         <Header />
         <MainContainer>
           <ViewNotes />
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
   {
     path: "notes/:notesId",
     element: (
-      <div>
+      <div className="bg-[#1d232a]">
         <Header />
         <MainContainer>
           <NoteViewer />
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
   {
     path: "notes/:notesId/update",
     element: (
-      <div>
+      <div className="bg-[#1d232a]">
         <Header />
         <MainContainer>
           <NoteEditor />

@@ -53,7 +53,7 @@ export default function NoteEditor() {
   }
 
   return (
-    <div className="flex flex-col gap-5 bg-[#e8e7cf] p-15 rounded-3xl">
+    <div className="flex  flex-col gap-5 bg-[#e8e7cf] p-15 rounded-3xl">
       <NoteForm
         title={title}
         setTitle={(val) => dispatch(setTitle(val))}
@@ -62,7 +62,7 @@ export default function NoteEditor() {
       />
       <div className="flex justify-end">
         <button
-          className="bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition"
+          className="btn btn-accent cursor-pointer font-semibold rounded-lg hover:btn-primary transition"
           onClick={handleSubmit}
           aria-label={notesId ? "Update note" : "Create note"}
         >
